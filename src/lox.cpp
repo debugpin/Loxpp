@@ -1,14 +1,28 @@
 #include "lox.h"
 
+#include <cstdlib>
+#include <fstream>
 #include <iostream>
 
-void Lox::runFile(const std::string& path) {
-  // Implementation for running a file
+int Lox::runFile(const std::string& path) {
+  std::ifstream file(path);
+
+  if (!file) {
+    std::cerr << "Could not open file: " << path << std::endl;
+    return EXIT_FAILURE;
+  }
+
+  std::string source((std::istreambuf_iterator<char>(file)),
+                     std::istreambuf_iterator<char>());
+  run(source);
+
+  return EXIT_SUCCESS;
 }
 
 void Lox::runPrompt() {
   // Implementation for running the prompt
 }
+
 void Lox::run(const std::string& source) {
   // Implementation for running source code
 }
