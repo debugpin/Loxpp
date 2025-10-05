@@ -10,8 +10,8 @@ class Lox {
   static void run(const std::string& source);
 
  private:
-  static bool hadError;
-  static bool hadRuntimeError;
+  static bool hadError = false;
+  static bool hadRuntimeError = false;
 
   static void report(int line, const std::string& where,
                      const std::string& message);

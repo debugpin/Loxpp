@@ -15,6 +15,7 @@ int Lox::runFile(const std::string& path) {
   std::string source((std::istreambuf_iterator<char>(file)),
                      std::istreambuf_iterator<char>());
   run(source);
+  if (hadError || hadRuntimeError) return EXIT_FAILURE;
 
   return EXIT_SUCCESS;
 }
