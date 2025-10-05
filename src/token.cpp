@@ -1,4 +1,5 @@
 #include "token.h"
+
 #include "token_type.h"
 
 std::string Token::toString() const {

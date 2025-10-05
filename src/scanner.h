@@ -1,17 +1,17 @@
 #pragma once
+#include <string>
+#include <vector>
+
 #include "token.h"
 
-#include <vector>
-#include <string>
-
 class Scanner {
-public:
+ public:
   Scanner(const std::string& source)
       : source(source), start(0), current(0), line(1) {}
 
   std::vector<Token> scanTokens();
 
-private:
+ private:
   char advance();
   char peek() const;
   char peekNext() const;
