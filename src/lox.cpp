@@ -1,10 +1,11 @@
 #include "lox.h"
-#include "token.h"
 
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <vector>
+
+#include "token.h"
 
 int Lox::runFile(const std::string& path) {
   std::ifstream file(path);
@@ -63,16 +64,14 @@ void Lox::runtimeError(const RuntimeError& error) {
 }
 
 int main(int argc, const char* argv[]) {
-  Lox lox;
-
   if (argc > 2) {
     std::cout << "Usage: lox [script]" << std::endl;
     return EXIT_FAILURE;
   } else {
     if (argc == 2) {
-      lox.runFile(argv[1]);
+      Lox::runFile(argv[1]);
     } else {
-      lox.runPrompt();
+      Lox::runPrompt();
     }
   }
 

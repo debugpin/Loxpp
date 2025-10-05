@@ -1,25 +1,22 @@
-#include "token.h"
+#pragma once
 
 #include <string>
+
+#include "token.h"
 
 // Forward declaration or include the header for RuntimeError
 class RuntimeError;
 
-class Lox {
- public:
-  Lox() = default;
-  ~Lox() = default;
+namespace Lox {
+static bool hadError = false;
+static bool hadRuntimeError = false;
 
-  int runFile(const std::string& path);
-  void runPrompt();
-  void run(const std::string& source);
+static int runFile(const std::string& path);
+static void runPrompt();
+static void run(const std::string& source);
 
- private:
-  bool hadError = false;
-  bool hadRuntimeError = false;
-
-  void report(int line, const std::string& where,
-               const std::string& message);
-  void error(int line, const std::string& message);
-  void runtimeError(const RuntimeError& error);
-};
+static void report(int line, const std::string& where,
+                   const std::string& message);
+static void error(int line, const std::string& message);
+static void runtimeError(const RuntimeError& error);
+};  // namespace Lox
