@@ -20,22 +20,50 @@ int Lox::runFile(const std::string& path) {
 }
 
 void Lox::runPrompt() {
-  // Implementation for running the prompt
+  std::string line;
+
+  for (;;) {
+    std::cout << "> ";
+    if (!std::getline(std::cin, line) || line.empty()) break;
+    run(line);
+    hadError = false;
+  }
 }
 
 void Lox::run(const std::string& source) {
-  // Implementation for running source code
+  Scanner scanner = new Scanner(source);
+  std::vector<Token> tokens = scanner.scanTokens();
+
+  // For now, just print the tokens
+  for (const Token& token : tokens) {
+    std::cout << token.toString() << std::endl;
+  }
+}
+
+void Lox::report(int line, const std::string& where,
+                 const std::string& message) {
+  std::cerr << "[line " << line << "] Error" << where << ": " << message
+            << std::endl;
+  hadError = true;
+}
+
+void error(int line, const std::string& message) { report(line, "", message); }
+
+void Lox::runtimeError(const RuntimeError& error) {
+  std::cerr << error.what() << "\n[line " << error.token.line << "]"
+            << std::endl;
+  hadRuntimeError = true;
 }
 
 int main(int argc, const char* argv[]) {
   if (argc > 2) {
     std::cout << "Usage: lox [script]" << std::endl;
-    return 64;
+    return EXIT_FAILURE;
   } else if (argc == 2) {
     Lox::runFile(argv[1]);
   } else {
     Lox::runPrompt();
   }
 
-  return 0;
+  return EXIT_SUCCESS;
 }
