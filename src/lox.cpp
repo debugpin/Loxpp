@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 
+#include "scanner.h"
 #include "token.h"
 
 int Lox::runFile(const std::string& path) {
@@ -27,7 +28,7 @@ void Lox::runPrompt() {
   std::string line;
 
   for (;;) {
-    std::cout << "> ";
+    std::cout << "> :)";
     if (!std::getline(std::cin, line) || line.empty()) break;
     run(line);
     hadError = false;
@@ -35,33 +36,19 @@ void Lox::runPrompt() {
 }
 
 void Lox::run(const std::string& source) {
-  // Scanner scanner = new Scanner(source);
-  std::vector<Token> tokens = {};  // = scanner.scanTokens();
+  Scanner* scanner = new Scanner(source);
+
+  std::vector<Token> tokens = scanner->scanTokens();
 
   // For now, just print the tokens
-  // for (const Token& token : tokens) {
-  //   std::cout << token.toString() << std::endl;
-  // }
+  for (const Token& token : tokens) {
+    std::cout << token.toString() << std::endl;
+  }
+
+  delete scanner;
 }
 
-void Lox::report(int line, const std::string& where,
-                 const std::string& message) {
-  std::cerr << "[line " << line << "] Error" << where << ": " << message
-            << std::endl;
-  hadError = true;
-}
 
-void report(int line, const std::string& where, const std::string& message) {
-  // Temporary implementations to avoid compilation errors
-}
-
-void error(int line, const std::string& message) { report(line, "", message); }
-
-void Lox::runtimeError(const RuntimeError& error) {
-  // std::cerr << error.what() << "\n[line " << error.token.line << "]"
-  //           << std::endl;
-  hadRuntimeError = true;
-}
 
 int main(int argc, const char* argv[]) {
   if (argc > 2) {
