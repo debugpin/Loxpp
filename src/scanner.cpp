@@ -5,6 +5,8 @@
 #include "lox.h"
 #include "token.h"
 
+using Lox::error;
+
 std::vector<Token> Scanner::scanTokens() {
   while (!isAtEnd()) {
     start = current;
