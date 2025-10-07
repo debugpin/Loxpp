@@ -49,3 +49,6 @@ install_manifest.txt
 Testing/
 CTestTestfile.cmake
 build/
+
+# Lox files
+*.lox
