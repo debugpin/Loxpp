@@ -69,52 +69,52 @@ void Scanner::scanToken() {
   char c = advance();
   switch (c) {
     case '(':
-      tokens.emplace_back(TokenType::LEFT_PAREN, "(", std::monostate(), line);
+      tokens.emplace_back(TokenType::LEFT_PAREN, "(", std::string(), line);
       break;
     case ')':
-      tokens.emplace_back(TokenType::RIGHT_PAREN, ")", std::monostate(), line);
+      tokens.emplace_back(TokenType::RIGHT_PAREN, ")", std::string(), line);
       break;
     case '{':
-      tokens.emplace_back(TokenType::LEFT_BRACE, "{", std::monostate(), line);
+      tokens.emplace_back(TokenType::LEFT_BRACE, "{", std::string(), line);
       break;
     case '}':
-      tokens.emplace_back(TokenType::RIGHT_BRACE, "}", std::monostate(), line);
+      tokens.emplace_back(TokenType::RIGHT_BRACE, "}", std::string(), line);
       break;
     case ',':
-      tokens.emplace_back(TokenType::COMMA, ",", std::monostate(), line);
+      tokens.emplace_back(TokenType::COMMA, ",", std::string(), line);
       break;
     case '.':
-      tokens.emplace_back(TokenType::DOT, ".", std::monostate(), line);
+      tokens.emplace_back(TokenType::DOT, ".", std::string(), line);
       break;
     case '-':
-      tokens.emplace_back(TokenType::MINUS, "-", std::monostate(), line);
+      tokens.emplace_back(TokenType::MINUS, "-", std::string(), line);
       break;
     case '+':
-      tokens.emplace_back(TokenType::PLUS, "+", std::monostate(), line);
+      tokens.emplace_back(TokenType::PLUS, "+", std::string(), line);
       break;
     case ';':
-      tokens.emplace_back(TokenType::SEMICOLON, ";", std::monostate(), line);
+      tokens.emplace_back(TokenType::SEMICOLON, ";", std::string(), line);
       break;
     case '*':
-      tokens.emplace_back(TokenType::STAR, "*", std::monostate(), line);
+      tokens.emplace_back(TokenType::STAR, "*", std::string(), line);
       break;
     case '!':
       tokens.emplace_back(match('=') ? TokenType::BANG_EQUAL : TokenType::BANG,
-                          match('=') ? "!=" : "!", std::monostate(), line);
+                          match('=') ? "!=" : "!", std::string(), line);
       break;
     case '=':
       tokens.emplace_back(
           match('=') ? TokenType::EQUAL_EQUAL : TokenType::EQUAL,
-          match('=') ? "==" : "=", std::monostate(), line);
+          match('=') ? "==" : "=", std::string(), line);
       break;
     case '<':
       tokens.emplace_back(match('=') ? TokenType::LESS_EQUAL : TokenType::LESS,
-                          match('=') ? "<=" : "<", std::monostate(), line);
+                          match('=') ? "<=" : "<", std::string(), line);
       break;
     case '>':
       tokens.emplace_back(
           match('=') ? TokenType::GREATER_EQUAL : TokenType::GREATER,
-          match('=') ? ">=" : ">", std::monostate(), line);
+          match('=') ? ">=" : ">", std::string(), line);
       break;
     case '/':
       if (match('/')) {
