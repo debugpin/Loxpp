@@ -130,7 +130,7 @@ void Scanner::scanToken() {
         value += advance();
       }
       if (isAtEnd()) {
-        // Handle unterminated string error
+        Lox::error(line, "Unterminated string.");
         return;
       }
       advance();  // closing "
